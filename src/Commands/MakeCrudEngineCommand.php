@@ -60,13 +60,13 @@ class MakeCrudEngineCommand extends Command
         $this->upperCaseSingularName = Str::upper($this->singularName);//MASTERCATEGORY
         $this->snakeCaseSingularName = Str::snake($this->singularName);//master_category
         $this->camelCaseSingularName = Str::snake($this->singularName);//masterCategory
-        $this->capitalCaseSingularName= Str::ucfirst($this->singularName);//MasterCategory
+        $this->capitalCaseSingularName= Str::ucfirst($this->lowerCaseSingularName);//MasterCategory
         $this->pluralName            = Str::plural($this->singularName);//Mastercategories
         $this->lowerCasePluralName   = Str::lower($this->pluralName);//mastercategories
         $this->upperCasePluralName   = Str::upper($this->pluralName);//MASTERCATEGORIES
         $this->snakeCasePluralName   = Str::snake($this->pluralName);//master_categories
         $this->camelCasePluralName   = Str::upper($this->pluralName);//masterCategories
-        $this->capitalCasePluralName = Str::ucfirst($this->pluralName);//MasterCategories
+        $this->capitalCasePluralName = Str::ucfirst($this->lowerCasePluralName);//MasterCategories
     }
 
     protected function createModel()
