@@ -1,0 +1,30 @@
+{
+    "name": "desino/crud-engine",
+    "description": "Desino customized in-house simple CURD generator engine",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Desino",
+            "email": "india@desino.be"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^11.9",
+        "laravel/tinker": "^2.9"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Desino\\CrudEngine\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "YourVendor\\CrudGenerator\\CrudGeneratorServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable"
+}
