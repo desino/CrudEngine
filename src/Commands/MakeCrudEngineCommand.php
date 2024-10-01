@@ -32,7 +32,7 @@ class MakeCrudEngineCommand extends Command
     plurals in language -> snakeCasePluralName
     singular in language -> snakeCaseSingularName
 
-    Model class name -> CapitalCaseSingularName
+    Model class name -> capitalCaseSingularName
     single modal variable name => ${{camelCaseSingularName}}
     list of records variable name => ${{camelCasePluralName}}
     
