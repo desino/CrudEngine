@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class {{modelName}} extends Model
+class {{capitalCaseSingularName}} extends Model
 {
     use HasFactory;
 
@@ -41,7 +41,7 @@ class {{modelName}} extends Model
     }
 
     /**
-     * Returns the list of statuses used for {{modelName}}
+     * Returns the list of statuses used for {{capitalCaseSingularName}}
      *
      * @return array
      */
@@ -54,7 +54,7 @@ class {{modelName}} extends Model
     }
 
      /**
-     * Returns true if the {{modelName}} is active, false otherwise
+     * Returns true if the {{capitalCaseSingularName}} is active, false otherwise
      *
      * @return bool
      */
@@ -64,7 +64,7 @@ class {{modelName}} extends Model
     }
 
     /**
-     * Returns true if the {{modelName}} is archived, false otherwise
+     * Returns true if the {{capitalCaseSingularName}} is archived, false otherwise
      *
      * @return bool
      */
@@ -74,7 +74,7 @@ class {{modelName}} extends Model
     }
 
      /**
-     * Returns the value for {{modelName}} status Active status
+     * Returns the value for {{capitalCaseSingularName}} status Active status
      *
      * @return string
      */
@@ -84,7 +84,7 @@ class {{modelName}} extends Model
     }
     
     /**
-     * Returns the value for {{modelName}} status Archived status
+     * Returns the value for {{capitalCaseSingularName}} status Archived status
      *
      *
      * @return string

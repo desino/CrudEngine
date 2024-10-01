@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{{modelName}};
+use App\Models\{{CapitalCaseSingularName}};
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use App\Services\AppMiscService;
 
 class {{capitalCaseSingularName}}Controller extends Controller
 {
@@ -32,7 +34,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
         if (!$this->loggedUser) {
             AppMiscService::addRedirectMsg(__('messages.general_not_allowed_access_message_text'));
@@ -71,7 +73,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
             'page_title',
             '{{camelCasePluralName}}',
             '{{camelCaseSingularName}}Statuses'.
-            '{{camelCasePluralName}}IndexFilterStatus'
+            '{{camelCasePluralName}}IndexFilterStatus',
             '{{camelCasePluralName}}IndexFilterKeyword',
         ));
     }
@@ -82,7 +84,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
      * @throws \Exception if creation fails
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         if (!$this->loggedUser) {
             AppMiscService::addRedirectMsg(__('messages.general_not_allowed_access_message_text'));
