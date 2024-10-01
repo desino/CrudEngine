@@ -129,16 +129,16 @@
                                     <div class="col-6 col-md-2 col-lg-2 col-xl-2 text-end">
                                         @if ($each{{capitalCaseSingularName}}->isStatusActive())
                                             <a class="text-app_dblue me-1" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                data-bs-title="{{trans('messages.{{snakeCasePluralName}}_deactivate_tooltip_{{snakeCaseSingularName}}_text')}}"
+                                                data-bs-title="{{__('messages.{{snakeCasePluralName}}_deactivate_tooltip_{{snakeCaseSingularName}}_text')}}"
                                                 data-bs-trigger="focus" data-bs-html="true" data-bs-toggle="popover"
-                                                data-bs-content="<div class='text-center'><a role='button' class='deactivate{{capitalCaseSingularName}} btn btn-danger w-100 border-0' id='deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{trans('messages.{{snakeCasePluralName}}_tooltip_confirmation_deactivate_btn_text')}}</a></div>" >
+                                                data-bs-content="<div class='text-center'><a role='button' class='deactivate{{capitalCaseSingularName}} btn btn-danger w-100 border-0' id='deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{__('messages.{{snakeCasePluralName}}_tooltip_confirmation_deactivate_btn_text')}}</a></div>" >
                                                 <i class="fa-solid fa-circle-check"></i>
                                             </a>
                                         @else
                                             <a class="text-danger me-1" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                data-bs-title="{{trans('messages.{{snakeCasePluralName}}_activate_tooltip_{{snakeCaseSingularName}}_text')}}"
+                                                data-bs-title="{{__('messages.{{snakeCasePluralName}}_activate_tooltip_{{snakeCaseSingularName}}_text')}}"
                                                 data-bs-trigger="focus" data-bs-html="true" data-bs-toggle="popover"
-                                                data-bs-content="<div class='text-center'><a role='button' class='activate{{capitalCaseSingularName}} btn btn-app_dblue w-100 border-0' id='activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{trans('messages.{{snakeCasePluralName}}_tooltip_confirmation_activate_btn_text')}}</a></div>" >
+                                                data-bs-content="<div class='text-center'><a role='button' class='activate{{capitalCaseSingularName}} btn btn-app_dblue w-100 border-0' id='activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{__('messages.{{snakeCasePluralName}}_tooltip_confirmation_activate_btn_text')}}</a></div>" >
                                                 <i class="fa-solid fa-circle-xmark"></i>
                                             </a>
                                         @endif

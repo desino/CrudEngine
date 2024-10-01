@@ -49,6 +49,7 @@ class MakeCrudEngineCommand extends Command
         $this->createMigration();
         $this->createViews();
         $this->updateRoutes();
+        $this->updateTranslations();
 
         $this->info('CRUD scaffold for '.$this->name.' is ready.');
     }
@@ -130,8 +131,6 @@ class MakeCrudEngineCommand extends Command
         file_put_contents(app_path("/Models/{$this->capitalCaseSingularName}.php"), $modelTemplate);
     }
 
-    
-
     protected function createMigration()
     {
         $migrationFile     = date('Y_m_d_His')."_create_{$this->snakeCasePluralName}_table.php";
@@ -177,6 +176,50 @@ class MakeCrudEngineCommand extends Command
         $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/deactivate', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'deactivate'])->name('{$this->camelCasePluralName}.deactivate');\n";
 
         file_put_contents(base_path('routes/web.php'), $routeTemplate, FILE_APPEND);
+    }
+
+    protected function updateTranslations()
+    {
+        $translations = [
+            '{{snakeCasePluralName}}_list_page_title'      => '',
+            '{{snakeCasePluralName}}_list_page_desc'       => '',
+            '{{snakeCasePluralName}}_list_create_btn_text' => '',
+            '{{snakeCaseSingularName}}_form_field_status_option0_text' => '',
+            '{{snakeCaseSingularName}}_form_field_status_option1_text' => '',
+            '{{snakeCasePluralName}}_filter_keyword_text' => '',
+            '{{snakeCasePluralName}}_column_name_text'    => '',
+            '{{snakeCasePluralName}}_column_actions_text' => '', 
+            '{{snakeCasePluralName}}_deactivate_tooltip_{{snakeCaseSingularName}}_text' => '',
+            '{{snakeCasePluralName}}_tooltip_confirmation_deactivate_btn_text'          => '',
+            '{{snakeCasePluralName}}_activate_tooltip_{{snakeCaseSingularName}}_text'   => '',
+            '{{snakeCasePluralName}}_tooltip_confirmation_activate_btn_text'            => '',
+            '{{snakeCasePluralName}}_tooltip_edit_action_text' => '',
+
+            'enable_{{snakeCaseSingularName}}_error_msg'    => '',
+            'enable_{{snakeCaseSingularName}}_success_msg'  => '',
+            'disable_{{snakeCaseSingularName}}_error_msg'   => '',
+            'disable_{{snakeCaseSingularName}}_success_msg' => '',
+
+            'general_error_{{snakeCaseSingularName}}_not_found'        => '',
+            '{{snakeCasePluralName}}_general_error_name_is_not_unique' => '',
+            '{{snakeCaseSingularName}}_form_field_name_text'           => '',
+
+            'create_{{snakeCaseSingularName}}_page_title'           => '',
+            'create_{{snakeCaseSingularName}}_page_desc'            => '',
+            'create_{{snakeCaseSingularName}}_form_submit_btn_text' => '',
+            'create_{{snakeCaseSingularName}}_error_msg'            => '',
+            'create_{{snakeCaseSingularName}}_success_msg'          => '',
+            
+            'edit_{{snakeCaseSingularName}}_page_title'           => '',
+            'edit_{{snakeCaseSingularName}}_page_desc'            => '',
+            'edit_{{snakeCaseSingularName}}_form_submit_btn_text' => '',
+            'edit_{{snakeCaseSingularName}}_error_msg'            => '',
+            'edit_{{snakeCaseSingularName}}_success_msg'          => '',
+        ];
+
+        $existingTranslations = include base_path('lang/en/messages.php');
+        $updatedTranslations = array_merge($existingTranslations, $translations);
+        file_put_contents(base_path('lang/en/messages.php'), '<?php return ' . var_export($updatedTranslations, true) . ';');
     }
 
     protected function getStub($type)

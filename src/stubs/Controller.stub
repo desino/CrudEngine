@@ -72,7 +72,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
         return view('{{snakeCasePluralName}}.index', compact(
             'page_title',
             '{{camelCasePluralName}}',
-            '{{camelCaseSingularName}}Statuses'.
+            '{{camelCaseSingularName}}Statuses',
             '{{camelCasePluralName}}IndexFilterStatus',
             '{{camelCasePluralName}}IndexFilterKeyword',
         ));

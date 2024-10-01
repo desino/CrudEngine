@@ -12,7 +12,7 @@
                             {{ $page_title }}
                         </h1>
                         <div class="my-2 small fst-italic clearfix text-app_lblue">
-                            {!! trans('messages.edit_{{snakeCaseSingularName}}_page_desc') !!}
+                            {!! __('messages.edit_{{snakeCaseSingularName}}_page_desc') !!}
                         </div>
                     </div>
                     <div class="col-12 col-md-3 col-lg-2">
@@ -25,7 +25,7 @@
                     <div class="row">
                         <div class="col-12 col-md-6 mb-3">
                             <label for="name" class="fw-bold form-label">
-                                {{ trans('messages.{{snakeCaseSingularName}}_form_field_name_text') }} <sup><i class="fa-solid fa-asterisk text-danger small fw-bold"></i></sup>
+                                {{ __('messages.{{snakeCaseSingularName}}_form_field_name_text') }} <sup><i class="fa-solid fa-asterisk text-danger small fw-bold"></i></sup>
                             </label>
                             <input type="text" class="form-control @error('name'){{ 'is-invalid' }}@enderror" id="name" name="name" value="{{ ${{camelCaseSingularName}}->name }}" autocomplete="off" />
                             @error('name')
@@ -37,7 +37,7 @@
                 </div>
                 <div class="card-footer bg-transparent p-0 d-grid gap-1">
                     <button class="btn btn-app_dblue fw-bold border-0 text-white" type="submit" style="outline: none;">
-                        {{ trans('messages.edit_{{snakeCaseSingularName}}_form_submit_btn_text') }}
+                        {{ __('messages.edit_{{snakeCaseSingularName}}_form_submit_btn_text') }}
                     </button>
                 </div>
             </div>
