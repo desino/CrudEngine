@@ -81,11 +81,49 @@ class MakeCrudEngineCommand extends Command
         file_put_contents(app_path("/Models/{$this->capitalCaseSingularName}.php"), $modelTemplate);
     }
 
+    private function getNamesPlaceholders()
+    {
+        return [
+            '{{singularName}}',
+            '{{lowerCaseSingularName}}',
+            '{{upperCaseSingularName}}',
+            '{{camelCaseSingularName}}',
+            '{{snakeCaseSingularName}}',
+            '{{capitalCaseSingularName}}',
+
+            '{{pluralName}}',
+            '{{lowerCasePluralName}}',
+            '{{upperCasePluralName}}',
+            '{{camelCasePluralName}}',
+            '{{snakeCasePluralName}}',
+            '{{capitalCasePluralName}}',
+        ];
+    }
+
+    private function getNamesPlaceholderValues()
+    {
+        return [
+            $this->singularName,
+            $this->lowerCaseSingularName,
+            $this->upperCaseSingularName,
+            $this->camelCaseSingularName,
+            $this->snakeCaseSingularName,
+            $this->capitalCaseSingularName,
+
+            $this->pluralName,
+            $this->lowerCasePluralName,
+            $this->upperCasePluralName,
+            $this->camelCasePluralName,
+            $this->snakeCasePluralName,
+            $this->capitalCasePluralName,
+        ];
+    }
+
     protected function createController()
     {
         $controllerTemplate = str_replace(
-            ['{{modelName}}', '{{singularName}}', '{{lowerCaseSingularName}}', '{{upperCaseSingularName}}', '{{snakeCaseSingularName}}', '{{camelCaseSingularName}}', '{{capitalCaseSingularName}}', '{{pluralName}}', '{{lowerCasePluralName}}', '{{upperCasePluralName}}', '{{camelCasePluralName}}', '{{snakeCasePluralName}}', '{{capitalCasePluralName}}'],
-            [$this->capitalCaseSingularName, $this->singularName, $this->lowerCaseSingularName, $this->upperCaseSingularName, $this->snakeCaseSingularName, $this->camelCaseSingularName, $this->capitalCaseSingularName, $this->pluralName, $this->lowerCasePluralName, $this->upperCasePluralName, $this->camelCasePluralName, $this->snakeCasePluralName, $this->capitalCasePluralName],
+            $this->getNamesPlaceholders(),
+            $this->getNamesPlaceholderValues(),
             $this->getStub('Controller')
         );
 
@@ -96,8 +134,8 @@ class MakeCrudEngineCommand extends Command
     {
         $migrationFile     = date('Y_m_d_His')."_create_{$this->snakeCasePluralName}_table.php";
         $migrationTemplate = str_replace(
-            ['{{singularName}}', '{{lowerCaseSingularName}}', '{{upperCaseSingularName}}', '{{snakeCaseSingularName}}', '{{camelCaseSingularName}}', '{{capitalCaseSingularName}}', '{{pluralName}}', '{{lowerCasePluralName}}', '{{upperCasePluralName}}', '{{camelCasePluralName}}', '{{snakeCasePluralName}}', '{{capitalCasePluralName}}'],
-            [$this->singularName, $this->lowerCaseSingularName, $this->upperCaseSingularName, $this->snakeCaseSingularName, $this->camelCaseSingularName, $this->capitalCaseSingularName, $this->pluralName, $this->lowerCasePluralName, $this->upperCasePluralName, $this->camelCasePluralName, $this->snakeCasePluralName, $this->capitalCasePluralName],
+            $this->getNamesPlaceholders(),
+            $this->getNamesPlaceholderValues(),
             $this->getStub('Migration')
         );
 
@@ -115,8 +153,8 @@ class MakeCrudEngineCommand extends Command
         $views = ['index', 'create', 'edit'];
         foreach ($views as $view) {
             $viewTemplate = str_replace(
-                ['{{singularName}}', '{{lowerCaseSingularName}}', '{{upperCaseSingularName}}', '{{snakeCaseSingularName}}', '{{camelCaseSingularName}}', '{{capitalCaseSingularName}}', '{{pluralName}}', '{{lowerCasePluralName}}', '{{upperCasePluralName}}', '{{camelCasePluralName}}', '{{snakeCasePluralName}}', '{{capitalCasePluralName}}'],
-                [$this->singularName, $this->lowerCaseSingularName, $this->upperCaseSingularName, $this->snakeCaseSingularName, $this->camelCaseSingularName, $this->capitalCaseSingularName, $this->pluralName, $this->lowerCasePluralName, $this->upperCasePluralName, $this->camelCasePluralName, $this->snakeCasePluralName, $this->capitalCasePluralName],
+                $this->getNamesPlaceholders(),
+                $this->getNamesPlaceholderValues(),
                 $this->getStub("Views/{$view}")
             );
 
