@@ -70,17 +70,6 @@ class MakeCrudEngineCommand extends Command
         $this->capitalCasePluralName   = Str::ucfirst($this->camelCasePluralName);//MasterCategories
     }
 
-    protected function createModel()
-    {
-        $modelTemplate = str_replace(
-            ['{{modelName}}'],
-            [$this->capitalCaseSingularName],
-            $this->getStub('Model')
-        );
-
-        file_put_contents(app_path("/Models/{$this->capitalCaseSingularName}.php"), $modelTemplate);
-    }
-
     private function getNamesPlaceholders()
     {
         return [
@@ -129,6 +118,19 @@ class MakeCrudEngineCommand extends Command
 
         file_put_contents(app_path("/Http/Controllers/{$this->capitalCaseSingularName}Controller.php"), $controllerTemplate);
     }
+
+    protected function createModel()
+    {
+        $modelTemplate = str_replace(
+            $this->getNamesPlaceholders(),
+            $this->getNamesPlaceholderValues(),
+            $this->getStub('Model')
+        );
+
+        file_put_contents(app_path("/Models/{$this->capitalCaseSingularName}.php"), $modelTemplate);
+    }
+
+    
 
     protected function createMigration()
     {
