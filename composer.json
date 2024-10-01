@@ -22,7 +22,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "YourVendor\\CrudGenerator\\CrudGeneratorServiceProvider"
+                "Desino\\CrudEngine\\CrudEngineServiceProvider",
             ]
         }
     },
