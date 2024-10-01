@@ -58,7 +58,7 @@ class {{capitalCaseSingularName}} extends Model
      *
      * @return bool
      */
-    public function isActive() : bool
+    public function isStatusActive() : bool
     {
         return $this->status == self::getStatusActive() ? true : false;
     }
@@ -68,7 +68,7 @@ class {{capitalCaseSingularName}} extends Model
      *
      * @return bool
      */
-    public function isDeactivated() : bool
+    public function isStatusInactive() : bool
     {
         return $this->status == self::getStatusInactive() ? true : false;
     }
