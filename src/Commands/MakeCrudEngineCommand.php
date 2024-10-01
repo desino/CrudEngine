@@ -126,13 +126,13 @@ class MakeCrudEngineCommand extends Command
     protected function updateRoutes()
     {
         $routeTemplate = "\nRoute::get('" . $this->snakeCasePluralName . "', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'index']')->name('" . $this->camelCasePluralName . ".index');\n";
-        $routeTemplate .= "\nRoute::post('" . $this->snakeCasePluralName . "', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'index']')->name('" . $this->camelCasePluralName . ".index');\n";
-        $routeTemplate .= "\nRoute::get('" . $this->snakeCasePluralName . "/create', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'create']')->name('" . $this->camelCasePluralName . ".create');\n";
-        $routeTemplate .= "\nRoute::post('" . $this->snakeCasePluralName . "/create', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'create']')->name('" . $this->camelCasePluralName . ".create');\n";
-        $routeTemplate .= "\nRoute::get('" . $this->snakeCasePluralName . "/edit/{id}', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'edit']')->name('" . $this->camelCasePluralName . ".edit');\n";
-        $routeTemplate .= "\nRoute::post('" . $this->snakeCasePluralName . "/edit/{id}', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'edit']')->name('" . $this->camelCasePluralName . ".edit');\n";
-        $routeTemplate .= "\nRoute::post('" . $this->snakeCasePluralName . "/activate', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'activate']')->name('" . $this->camelCasePluralName . ".activate');\n";
-        $routeTemplate .= "\nRoute::post('" . $this->snakeCasePluralName . "/deactivate', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'deactivate']')->name('" . $this->camelCasePluralName . ".deactivate');\n";
+        $routeTemplate .= "Route::post('" . $this->snakeCasePluralName . "', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'index']')->name('" . $this->camelCasePluralName . ".index');\n";
+        $routeTemplate .= "Route::get('" . $this->snakeCasePluralName . "/create', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'create']')->name('" . $this->camelCasePluralName . ".create');\n";
+        $routeTemplate .= "Route::post('" . $this->snakeCasePluralName . "/create', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'create']')->name('" . $this->camelCasePluralName . ".create');\n";
+        $routeTemplate .= "Route::get('" . $this->snakeCasePluralName . "/edit/{id}', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'edit']')->name('" . $this->camelCasePluralName . ".edit');\n";
+        $routeTemplate .= "Route::post('" . $this->snakeCasePluralName . "/edit/{id}', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'edit']')->name('" . $this->camelCasePluralName . ".edit');\n";
+        $routeTemplate .= "Route::post('" . $this->snakeCasePluralName . "/activate', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'activate']')->name('" . $this->camelCasePluralName . ".activate');\n";
+        $routeTemplate .= "Route::post('" . $this->snakeCasePluralName . "/deactivate', [App\Http\Controllers\'" . $this->capitalCaseSingularName . "Controller::class, 'deactivate']')->name('" . $this->camelCasePluralName . ".deactivate');\n";
 
         file_put_contents(base_path('routes/web.php'), $routeTemplate, FILE_APPEND);
     }
