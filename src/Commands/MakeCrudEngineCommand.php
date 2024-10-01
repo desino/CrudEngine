@@ -35,7 +35,7 @@ class MakeCrudEngineCommand extends Command
     Model class name -> capitalCaseSingularName
     single modal variable name => ${{camelCaseSingularName}}
     list of records variable name => ${{camelCasePluralName}}
-    
+
     view folder => snakeCasePluralName
     */
 
@@ -62,7 +62,7 @@ class MakeCrudEngineCommand extends Command
         $this->camelCaseSingularName   = Str::camel($this->singularName);//masterCategory
         $this->snakeCaseSingularName   = Str::snake($this->singularName);//master_category
         $this->capitalCaseSingularName = Str::ucfirst($this->camelCaseSingularName);//MasterCategory
-        
+
         $this->pluralName              = Str::plural($this->singularName);//Mastercategories
         $this->lowerCasePluralName     = Str::lower($this->pluralName);//mastercategories
         $this->upperCasePluralName     = Str::upper($this->pluralName);//MASTERCATEGORIES
@@ -181,40 +181,41 @@ class MakeCrudEngineCommand extends Command
     protected function updateTranslations()
     {
         $translations = [
-            '{{snakeCasePluralName}}_list_page_title'      => '',
-            '{{snakeCasePluralName}}_list_page_desc'       => '',
-            '{{snakeCasePluralName}}_list_create_btn_text' => '',
-            '{{snakeCaseSingularName}}_form_field_status_option0_text' => '',
-            '{{snakeCaseSingularName}}_form_field_status_option1_text' => '',
-            '{{snakeCasePluralName}}_filter_keyword_text' => '',
-            '{{snakeCasePluralName}}_column_name_text'    => '',
-            '{{snakeCasePluralName}}_column_actions_text' => '', 
-            '{{snakeCasePluralName}}_deactivate_tooltip_{{snakeCaseSingularName}}_text' => '',
-            '{{snakeCasePluralName}}_tooltip_confirmation_deactivate_btn_text'          => '',
-            '{{snakeCasePluralName}}_activate_tooltip_{{snakeCaseSingularName}}_text'   => '',
-            '{{snakeCasePluralName}}_tooltip_confirmation_activate_btn_text'            => '',
-            '{{snakeCasePluralName}}_tooltip_edit_action_text' => '',
+            $this->snakeCasePluralName.'_list_page_title'      => $this->capitalCasePluralName,
+            $this->snakeCasePluralName.'_list_page_desc'       => 'Description goes here...',
+            $this->snakeCasePluralName.'_list_create_btn_text' => 'Create New',
+            $this->snakeCaseSingularName.'_form_field_status_option0_text' => 'Deactivated',
+            $this->snakeCaseSingularName.'_form_field_status_option1_text' => 'Activated',
+            $this->snakeCasePluralName.'_filter_keyword_text' => 'Search by keyword',
+            $this->snakeCasePluralName.'_column_name_text'    => 'Name',
+            $this->snakeCasePluralName.'_column_actions_text' => 'Actions',
+            $this->snakeCasePluralName.'_deactivate_tooltip_'.$this->snakeCaseSingularName.'_text' => 'Are you sure to deactivate this '.$this->singularName.'?',
+            $this->snakeCasePluralName.'_tooltip_confirmation_deactivate_btn_text'                 => 'Yes, Deactivate it!',
+            $this->snakeCasePluralName.'_activate_tooltip_'.$this->snakeCaseSingularName.'_text'   => 'Are you sure to activate this '.$this->singularName.'?',
+            $this->snakeCasePluralName.'_tooltip_confirmation_activate_btn_text'                   => 'Yes, Activate it!',
+            $this->snakeCasePluralName.'_tooltip_edit_action_text' => 'Click here adapt this '.$this->singularName.'',
 
-            'enable_{{snakeCaseSingularName}}_error_msg'    => '',
-            'enable_{{snakeCaseSingularName}}_success_msg'  => '',
-            'disable_{{snakeCaseSingularName}}_error_msg'   => '',
-            'disable_{{snakeCaseSingularName}}_success_msg' => '',
+            'enable_'.$this->snakeCaseSingularName.'_error_msg'    => 'An error occurred while enabling the requested '.$this->singularName.'.',
+            'enable_'.$this->snakeCaseSingularName.'_success_msg'  => 'The requested '.$this->singularName.' has been enabled.',
+            'disable_'.$this->snakeCaseSingularName.'_error_msg'   => 'An error occurred while disabling the requested '.$this->singularName.'.',
+            'disable_'.$this->snakeCaseSingularName.'_success_msg' => 'The requested '.$this->singularName.' has been disabled.',
 
-            'general_error_{{snakeCaseSingularName}}_not_found'        => '',
-            '{{snakeCasePluralName}}_general_error_name_is_not_unique' => '',
-            '{{snakeCaseSingularName}}_form_field_name_text'           => '',
-
-            'create_{{snakeCaseSingularName}}_page_title'           => '',
-            'create_{{snakeCaseSingularName}}_page_desc'            => '',
-            'create_{{snakeCaseSingularName}}_form_submit_btn_text' => '',
-            'create_{{snakeCaseSingularName}}_error_msg'            => '',
-            'create_{{snakeCaseSingularName}}_success_msg'          => '',
+            'general_error_'.$this->snakeCaseSingularName.'_not_found'        => 'The requested '.$this->singularName.' was not found.',
+            $this->snakeCasePluralName.'_general_error_name_is_not_unique' => 'The specified name is already taken.',
             
-            'edit_{{snakeCaseSingularName}}_page_title'           => '',
-            'edit_{{snakeCaseSingularName}}_page_desc'            => '',
-            'edit_{{snakeCaseSingularName}}_form_submit_btn_text' => '',
-            'edit_{{snakeCaseSingularName}}_error_msg'            => '',
-            'edit_{{snakeCaseSingularName}}_success_msg'          => '',
+            $this->snakeCaseSingularName.'_form_field_name_text'           => 'Name',
+
+            'create_'.$this->snakeCaseSingularName.'_page_title'           => 'Create: '.$this->capitalCaseSingularName,
+            'create_'.$this->snakeCaseSingularName.'_page_desc'            => 'Description goes here...',
+            'create_'.$this->snakeCaseSingularName.'_form_submit_btn_text' => 'Create',
+            'create_'.$this->snakeCaseSingularName.'_error_msg'            => 'An error occurred while creating the requested '.$this->singularName.'.',
+            'create_'.$this->snakeCaseSingularName.'_success_msg'          => 'The requested '.$this->singularName.' has been created.',
+
+            'edit_'.$this->snakeCaseSingularName.'_page_title'           => 'Edit '.$this->capitalCaseSingularName.' :'.$this->upperCaseSingularName.'_NAME',
+            'edit_'.$this->snakeCaseSingularName.'_page_desc'            => 'Description goes here...',
+            'edit_'.$this->snakeCaseSingularName.'_form_submit_btn_text' => 'Update',
+            'edit_'.$this->snakeCaseSingularName.'_error_msg'            => 'An error occurred while updating the requested '.$this->singularName.'.',
+            'edit_'.$this->snakeCaseSingularName.'_success_msg'          => 'The requested '.$this->singularName.' has been updated.',
         ];
 
         $existingTranslations = include base_path('lang/en/messages.php');
