@@ -57,16 +57,17 @@ class MakeCrudEngineCommand extends Command
     {
         $this->singularName            = Str::singular($this->name);//Mastercategory
         $this->lowerCaseSingularName   = Str::lower($this->singularName);//mastercategory
-        $this->snakeCaseSingularName   = Str::snake($this->lowerCaseSingularName);//master_category
-        $this->upperCaseSingularName   = Str::upper($this->lowerCaseSingularName);//MASTERCATEGORY
-        $this->camelCaseSingularName   = Str::camel($this->lowerCaseSingularName);//masterCategory
-        $this->capitalCaseSingularName = Str::ucfirst($this->lowerCaseSingularName);//MasterCategory
+        $this->upperCaseSingularName   = Str::upper($this->singularName);//MASTERCATEGORY
+        $this->camelCaseSingularName   = Str::camel($this->singularName);//masterCategory
+        $this->snakeCaseSingularName   = Str::snake($this->singularName);//master_category
+        $this->capitalCaseSingularName = Str::ucfirst($this->singularName);//MasterCategory
+        
         $this->pluralName              = Str::plural($this->singularName);//Mastercategories
-        $this->lowerCasePluralName     = Str::lower($this->lowerCasePluralName);//mastercategories
-        $this->upperCasePluralName     = Str::upper($this->lowerCasePluralName);//MASTERCATEGORIES
-        $this->snakeCasePluralName     = Str::snake($this->lowerCasePluralName);//master_categories
-        $this->camelCasePluralName     = Str::camel($this->lowerCasePluralName);//masterCategories
-        $this->capitalCasePluralName   = Str::ucfirst($this->lowerCasePluralName);//MasterCategories
+        $this->lowerCasePluralName     = Str::lower($this->pluralName);//mastercategories
+        $this->upperCasePluralName     = Str::upper($this->pluralName);//MASTERCATEGORIES
+        $this->camelCasePluralName     = Str::camel($this->pluralName);//masterCategories
+        $this->snakeCasePluralName     = Str::snake($this->pluralName);//master_categories
+        $this->capitalCasePluralName   = Str::ucfirst($this->pluralName);//MasterCategories
     }
 
     protected function createModel()
