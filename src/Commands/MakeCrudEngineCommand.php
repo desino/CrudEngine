@@ -80,7 +80,7 @@ class MakeCrudEngineCommand extends Command
         file_put_contents(app_path("/Models/{$this->capitalCaseSingularName}.php"), $modelTemplate);
     }
 
-    protected function createController($name)
+    protected function createController()
     {
         $controllerTemplate = str_replace(
             ['{{modelName}}', '{{singularName}}', '{{lowerCaseSingularName}}', '{{upperCaseSingularName}}', '{{snakeCaseSingularName}}', '{{camelCaseSingularName}}', '{{capitalCaseSingularName}}', '{{pluralName}}', '{{lowerCasePluralName}}', '{{upperCasePluralName}}', '{{camelCasePluralName}}', '{{snakeCasePluralName}}', '{{capitalCasePluralName}}'],
