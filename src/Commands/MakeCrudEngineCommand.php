@@ -55,18 +55,18 @@ class MakeCrudEngineCommand extends Command
 
     protected function configureNames()
     {
-        $this->singularName          = Str::singular($this->name);//Mastercategory
-        $this->lowerCaseSingularName = Str::lower($this->singularName);//mastercategory
-        $this->upperCaseSingularName = Str::upper($this->singularName);//MASTERCATEGORY
-        $this->snakeCaseSingularName = Str::snake($this->singularName);//master_category
-        $this->camelCaseSingularName = Str::snake($this->singularName);//masterCategory
-        $this->capitalCaseSingularName= Str::ucfirst($this->lowerCaseSingularName);//MasterCategory
-        $this->pluralName            = Str::plural($this->singularName);//Mastercategories
-        $this->lowerCasePluralName   = Str::lower($this->pluralName);//mastercategories
-        $this->upperCasePluralName   = Str::upper($this->pluralName);//MASTERCATEGORIES
-        $this->snakeCasePluralName   = Str::snake($this->pluralName);//master_categories
-        $this->camelCasePluralName   = Str::upper($this->pluralName);//masterCategories
-        $this->capitalCasePluralName = Str::ucfirst($this->lowerCasePluralName);//MasterCategories
+        $this->singularName            = Str::singular($this->name);//Mastercategory
+        $this->lowerCaseSingularName   = Str::lower($this->singularName);//mastercategory
+        $this->snakeCaseSingularName   = Str::snake($this->lowerCaseSingularName);//master_category
+        $this->upperCaseSingularName   = Str::upper($this->lowerCaseSingularName);//MASTERCATEGORY
+        $this->camelCaseSingularName   = Str::camel($this->lowerCaseSingularName);//masterCategory
+        $this->capitalCaseSingularName = Str::ucfirst($this->lowerCaseSingularName);//MasterCategory
+        $this->pluralName              = Str::plural($this->singularName);//Mastercategories
+        $this->lowerCasePluralName     = Str::lower($this->lowerCasePluralName);//mastercategories
+        $this->upperCasePluralName     = Str::upper($this->lowerCasePluralName);//MASTERCATEGORIES
+        $this->snakeCasePluralName     = Str::snake($this->lowerCasePluralName);//master_categories
+        $this->camelCasePluralName     = Str::camel($this->lowerCasePluralName);//masterCategories
+        $this->capitalCasePluralName   = Str::ucfirst($this->lowerCasePluralName);//MasterCategories
     }
 
     protected function createModel()
