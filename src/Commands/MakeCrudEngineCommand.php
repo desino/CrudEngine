@@ -93,7 +93,7 @@ class MakeCrudEngineCommand extends Command
 
     protected function createMigration()
     {
-        $migrationFile     = date('Y_m_d_His').'_create_{$this->snakeCasePluralName}_table.php';
+        $migrationFile     = date('Y_m_d_His')."_create_{$this->snakeCasePluralName}_table.php";
         $migrationTemplate = str_replace(
             ['{{singularName}}', '{{lowerCaseSingularName}}', '{{upperCaseSingularName}}', '{{snakeCaseSingularName}}', '{{camelCaseSingularName}}', '{{capitalCaseSingularName}}', '{{pluralName}}', '{{lowerCasePluralName}}', '{{upperCasePluralName}}', '{{camelCasePluralName}}', '{{snakeCasePluralName}}', '{{capitalCasePluralName}}'],
             [$this->singularName, $this->lowerCaseSingularName, $this->upperCaseSingularName, $this->snakeCaseSingularName, $this->camelCaseSingularName, $this->capitalCaseSingularName, $this->pluralName, $this->lowerCasePluralName, $this->upperCasePluralName, $this->camelCasePluralName, $this->snakeCasePluralName, $this->capitalCasePluralName],
