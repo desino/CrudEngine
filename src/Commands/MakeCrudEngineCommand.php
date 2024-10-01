@@ -100,7 +100,7 @@ class MakeCrudEngineCommand extends Command
             $this->getStub('Migration')
         );
 
-        file_put_contents(database_path("/migrations/{$migrationFile}"), $migrationTemplate);
+        file_put_contents(database_path("migrations/{$migrationFile}"), $migrationTemplate);
     }
 
     protected function createViews()
