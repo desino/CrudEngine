@@ -166,14 +166,14 @@ class MakeCrudEngineCommand extends Command
     protected function updateRoutes()
     {
         $routeTemplate = "\n";
-        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'index'])->name('{$this->camelCasePluralName}.index');\n";
-        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'index'])->name('{$this->camelCasePluralName}.index');\n";
-        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}/create', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'create'])->name('{$this->camelCasePluralName}.create');\n";
-        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/create', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'create'])->name('{$this->camelCasePluralName}.create');\n";
-        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}/edit/{id}', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'edit'])->name('{$this->camelCasePluralName}.edit');\n";
-        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/edit/{id}', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'edit'])->name('{$this->camelCasePluralName}.edit');\n";
-        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/activate', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'activate'])->name('{$this->camelCasePluralName}.activate');\n";
-        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/deactivate', [App\Http\Controllers\{$this->capitalCaseSingularName}Controller::class, 'deactivate'])->name('{$this->camelCasePluralName}.deactivate');\n";
+        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'index'])->name('{$this->camelCasePluralName}.index');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'index'])->name('{$this->camelCasePluralName}.index');\n";
+        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}/create', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'create'])->name('{$this->camelCasePluralName}.create');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/create', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'create'])->name('{$this->camelCasePluralName}.create');\n";
+        $routeTemplate .= "Route::get('{$this->snakeCasePluralName}/edit/{id}', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'edit'])->name('{$this->camelCasePluralName}.edit');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/edit/{id}', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'edit'])->name('{$this->camelCasePluralName}.edit');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/activate', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'activate'])->name('{$this->camelCasePluralName}.activate');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/deactivate', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'deactivate'])->name('{$this->camelCasePluralName}.deactivate');\n";
 
         file_put_contents(base_path('routes/web.php'), $routeTemplate, FILE_APPEND);
     }
@@ -181,6 +181,15 @@ class MakeCrudEngineCommand extends Command
     protected function updateTranslations()
     {
         $translations = [
+            /**
+             * '.$this->snakeCaseSingularName.' : General
+             */
+            'general_error_'.$this->snakeCaseSingularName.'_not_found'        => 'The requested '.$this->singularName.' was not found.',
+            $this->snakeCasePluralName.'_general_error_name_is_not_unique' => 'The specified name is already taken.',
+            $this->snakeCaseSingularName.'_form_field_name_text'           => 'Name',
+            /**
+             * '.$this->snakeCaseSingularName.' : List
+             */
             $this->snakeCasePluralName.'_list_page_title'      => $this->capitalCasePluralName,
             $this->snakeCasePluralName.'_list_page_desc'       => 'Description goes here...',
             $this->snakeCasePluralName.'_list_create_btn_text' => 'Create New',
@@ -194,23 +203,24 @@ class MakeCrudEngineCommand extends Command
             $this->snakeCasePluralName.'_activate_tooltip_'.$this->snakeCaseSingularName.'_text'   => 'Are you sure to activate this '.$this->singularName.'?',
             $this->snakeCasePluralName.'_tooltip_confirmation_activate_btn_text'                   => 'Yes, Activate it!',
             $this->snakeCasePluralName.'_tooltip_edit_action_text' => 'Click here adapt this '.$this->singularName.'',
-
+            /**
+             * '.$this->snakeCaseSingularName.' : Activate/ Deactivate
+             */
             'enable_'.$this->snakeCaseSingularName.'_error_msg'    => 'An error occurred while enabling the requested '.$this->singularName.'.',
             'enable_'.$this->snakeCaseSingularName.'_success_msg'  => 'The requested '.$this->singularName.' has been enabled.',
             'disable_'.$this->snakeCaseSingularName.'_error_msg'   => 'An error occurred while disabling the requested '.$this->singularName.'.',
             'disable_'.$this->snakeCaseSingularName.'_success_msg' => 'The requested '.$this->singularName.' has been disabled.',
-
-            'general_error_'.$this->snakeCaseSingularName.'_not_found'        => 'The requested '.$this->singularName.' was not found.',
-            $this->snakeCasePluralName.'_general_error_name_is_not_unique' => 'The specified name is already taken.',
-            
-            $this->snakeCaseSingularName.'_form_field_name_text'           => 'Name',
-
+            /**
+             * '.$this->snakeCaseSingularName.' : Create Page
+             */
             'create_'.$this->snakeCaseSingularName.'_page_title'           => 'Create: '.$this->capitalCaseSingularName,
             'create_'.$this->snakeCaseSingularName.'_page_desc'            => 'Description goes here...',
             'create_'.$this->snakeCaseSingularName.'_form_submit_btn_text' => 'Create',
             'create_'.$this->snakeCaseSingularName.'_error_msg'            => 'An error occurred while creating the requested '.$this->singularName.'.',
             'create_'.$this->snakeCaseSingularName.'_success_msg'          => 'The requested '.$this->singularName.' has been created.',
-
+            /**
+             * '.$this->snakeCaseSingularName.' : Edit Page
+             */
             'edit_'.$this->snakeCaseSingularName.'_page_title'           => 'Edit '.$this->capitalCaseSingularName.' :'.$this->upperCaseSingularName.'_NAME',
             'edit_'.$this->snakeCaseSingularName.'_page_desc'            => 'Description goes here...',
             'edit_'.$this->snakeCaseSingularName.'_form_submit_btn_text' => 'Update',
@@ -218,9 +228,22 @@ class MakeCrudEngineCommand extends Command
             'edit_'.$this->snakeCaseSingularName.'_success_msg'          => 'The requested '.$this->singularName.' has been updated.',
         ];
 
-        $existingTranslations = include base_path('lang/en/messages.php');
-        $updatedTranslations = array_merge($existingTranslations, $translations);
-        file_put_contents(base_path('lang/en/messages.php'), '<?php return ' . var_export($updatedTranslations, true) . ';');
+        $contents = file_get_contents(base_path('lang/en/messages.php'));
+        if (preg_match('/return\s+\[(.*)\];/s', $contents, $matches)) {
+            $arrayContent = $matches[1];
+
+            $newTranslationString = '';
+            foreach ($translations as $key => $value) {
+                if (!preg_match("/'{$key}'\s*=>/", $arrayContent)) {// Check if the key already exists
+                    $newTranslationString .= "    '{$key}' => '{$value}',\n";
+                }
+            }
+            if (!empty($newTranslationString)) {
+                $arrayContent = rtrim($arrayContent)."\n\n".$newTranslationString."\n\n";
+            }
+            $newContents = str_replace($matches[1], $arrayContent, $contents);
+            file_put_contents(base_path('lang/en/messages.php'), $newContents);
+        }
     }
 
     protected function getStub($type)
