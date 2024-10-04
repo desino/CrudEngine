@@ -174,6 +174,7 @@ class MakeCrudEngineCommand extends Command
         $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/edit/{id}', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'edit'])->name('{$this->camelCasePluralName}.edit');\n";
         $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/activate', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'activate'])->name('{$this->camelCasePluralName}.activate');\n";
         $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/deactivate', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'deactivate'])->name('{$this->camelCasePluralName}.deactivate');\n";
+        $routeTemplate .= "Route::post('{$this->snakeCasePluralName}/delete', [App\\Http\\Controllers\\{$this->capitalCaseSingularName}Controller::class, 'delete'])->name('{$this->camelCasePluralName}.delete');\n";
 
         file_put_contents(base_path('routes/web.php'), $routeTemplate, FILE_APPEND);
     }

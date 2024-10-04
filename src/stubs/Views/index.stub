@@ -5,7 +5,7 @@
     jQuery(document).ready(function($) {
         jQuery(document).on('click', '.deactivate{{capitalCaseSingularName}}', function(event) {
             event.preventDefault();
-            var eleId = parseInt(jQuery(this).attr('id').split('deactivate{{capitalCaseSingularName}}_')[1]);
+            var eleId = parseInt(jQuery(this).attr('id').split('deactivate{{capitalCaseSingularName}}')[1]);
             if (eleId > 0) {
                 jQuery('#deactivateConfirmModal').modal('show');
                 jQuery("#deactivate_form #deactivate_id").val(eleId);
@@ -19,7 +19,7 @@
 
         jQuery(document).on('click', '.activate{{capitalCaseSingularName}}', function(event) {
             event.preventDefault();
-            var eleId = parseInt(jQuery(this).attr('id').split('activate{{capitalCaseSingularName}}_')[1]);
+            var eleId = parseInt(jQuery(this).attr('id').split('activate{{capitalCaseSingularName}}')[1]);
             if (eleId > 0) {
                 jQuery('#activateConfirmModal').modal('show');
                 jQuery("#activate_form #activate_id").val(eleId);
@@ -229,9 +229,9 @@
                         </a>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                        <a role="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal" href="JavaScript:void(0);">
                             <i class="fa-solid fa-xmark"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -255,9 +255,9 @@
                         </a>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                        <a role="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal" href="JavaScript:void(0);">
                             <i class="fa-solid fa-xmark"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -281,9 +281,9 @@
                         </a>
                     </div>
                     <div class="col-2">
-                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                        <a role="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal" href="JavaScript:void(0);">
                             <i class="fa-solid fa-xmark"></i>
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
