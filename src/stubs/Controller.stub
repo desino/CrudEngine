@@ -294,4 +294,45 @@ class {{capitalCaseSingularName}}Controller extends Controller
 
         return redirect()->route('{{camelCasePluralName}}.index');
     }
+
+    /**
+     * Deletes a {{camelCaseSingularName}}.
+     *
+     * @param Request $request The HTTP request object.
+     * @throws \Exception If an error occurs during the deletion process.
+     * @return \Illuminate\Http\Response The HTTP response.
+     */
+    public function delete(Request $request)
+    {
+        if (! $this->loggedUser) {
+            AppMiscService::addRedirectMsg(__('messages.general_not_allowed_access_message_text'));
+
+            return redirect()->route('home');
+        }
+
+        $delete_id = (int) $request->post('delete_id', 0);
+        ${{camelCaseSingularName}} = {{capitalCaseSingularName}}::find($delete_id);
+        if (!${{camelCaseSingularName}}) {
+            AppMiscService::addRedirectMsg(__('messages.general_error_{{snakeCaseSingularName}}_not_found'));
+
+            return redirect()->route('{{camelCasePluralName}}.index');
+        }
+
+        DB::beginTransaction();
+        try {
+            ${{camelCaseSingularName}}->delete();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
+            logger()->error($e);
+            AppMiscService::addRedirectMsg(__('messages.delete_{{snakeCaseSingularName}}_error_msg'));
+
+            return redirect()->route('{{camelCasePluralName}}.index');
+        }
+
+        AppMiscService::addRedirectMsg(__('messages.delete_{{snakeCaseSingularName}}_success_msg'), 'success');
+
+        return redirect()->route('{{camelCasePluralName}}.index');
+    }
 }

@@ -3,23 +3,46 @@
 @section('customscript')
 <script>
     jQuery(document).ready(function($) {
-        jQuery('#loading_screen').css('display', 'none');
-
         jQuery(document).on('click', '.deactivate{{capitalCaseSingularName}}', function(event) {
             event.preventDefault();
-            var eleId = parseInt(jQuery(this).attr('id').split('deactivate{{capitalCaseSingularName}}')[1]);
+            var eleId = parseInt(jQuery(this).attr('id').split('deactivate{{capitalCaseSingularName}}_')[1]);
             if (eleId > 0) {
-                jQuery("form#deactivate_form #deactivate_id").val(eleId);
-                jQuery("form#deactivate_form").submit();
+                jQuery('#deactivateConfirmModal').modal('show');
+                jQuery("#deactivate_form #deactivate_id").val(eleId);
             }
         });
+        jQuery(document).on('click', '#deactivate_confirm_modal_submit_btn', function(event) {
+            event.preventDefault();
+            jQuery('#loading_screen').show();
+            jQuery("form#deactivate_form").submit();
+        });
+
         jQuery(document).on('click', '.activate{{capitalCaseSingularName}}', function(event) {
             event.preventDefault();
-            var eleId = parseInt(jQuery(this).attr('id').split('activate{{capitalCaseSingularName}}')[1]);
+            var eleId = parseInt(jQuery(this).attr('id').split('activate{{capitalCaseSingularName}}_')[1]);
             if (eleId > 0) {
-                jQuery("form#activate_form #activate_id").val(eleId);
-                jQuery("form#activate_form").submit();
+                jQuery('#activateConfirmModal').modal('show');
+                jQuery("#activate_form #activate_id").val(eleId);
             }
+        });
+        jQuery(document).on('click', '#activate_confirm_modal_submit_btn', function(event) {
+            event.preventDefault();
+            jQuery('#loading_screen').show();
+            jQuery("form#activate_form").submit();
+        });
+
+        jQuery(document).on('click', '.delete{{capitalCaseSingularName}}', function(event) {
+            event.preventDefault();
+            var eleId = parseInt(jQuery(this).attr('id').split('delete{{capitalCaseSingularName}}')[1]);
+            if (eleId > 0) {
+                jQuery('#deleteConfirmModal').modal('show');
+                jQuery("#delete_form #delete_id").val(eleId);
+            }
+        });
+        jQuery(document).on('click', '#delete_confirm_modal_submit_btn', function(event) {
+            event.preventDefault();
+            jQuery('#loading_screen').show();
+            jQuery("form#delete_form").submit();
         });
 
         jQuery(document).on('click', '#{{snakeCasePluralName}}_index_clear', function(event) {
@@ -128,23 +151,23 @@
                                     <div class="col-6 col-md-2 col-lg-2 col-xl-2 text-start"></div>
                                     <div class="col-6 col-md-2 col-lg-2 col-xl-2 text-end">
                                         @if ($each{{capitalCaseSingularName}}->isStatusActive())
-                                            <a class="text-app_dblue me-1" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                data-bs-title="{{__('messages.{{snakeCasePluralName}}_deactivate_tooltip_{{snakeCaseSingularName}}_text')}}"
-                                                data-bs-trigger="focus" data-bs-html="true" data-bs-toggle="popover"
-                                                data-bs-content="<div class='text-center'><a role='button' class='deactivate{{capitalCaseSingularName}} btn btn-danger w-100 border-0' id='deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{__('messages.{{snakeCasePluralName}}_tooltip_confirmation_deactivate_btn_text')}}</a></div>" >
+                                            <a class="me-1 text-app_dblue deactivate{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
+                                                title="{{__('messages.{{snakeCasePluralName}}_list_deactivate_tooltip_text')}}" data-bs-toggle="tooltip" id="deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
                                                 <i class="fa-solid fa-circle-check"></i>
                                             </a>
                                         @else
-                                            <a class="text-danger me-1" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                data-bs-title="{{__('messages.{{snakeCasePluralName}}_activate_tooltip_{{snakeCaseSingularName}}_text')}}"
-                                                data-bs-trigger="focus" data-bs-html="true" data-bs-toggle="popover"
-                                                data-bs-content="<div class='text-center'><a role='button' class='activate{{capitalCaseSingularName}} btn btn-app_dblue w-100 border-0' id='activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}' >{{__('messages.{{snakeCasePluralName}}_tooltip_confirmation_activate_btn_text')}}</a></div>" >
+                                            <a class="me-1 text-danger activate{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
+                                                title="{{__('messages.{{snakeCasePluralName}}_list_activate_tooltip_text')}}" data-bs-toggle="tooltip" id="activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
                                                 <i class="fa-solid fa-circle-xmark"></i>
                                             </a>
                                         @endif
                                         <a class="me-1 text-app_dblue" target="_blank" href="{{ route('{{camelCasePluralName}}.edit', ['id' => $each{{capitalCaseSingularName}}->id]) }}" style="text-decoration: none;"
                                             data-bs-toggle="tooltip"  title="{{__('messages.{{snakeCasePluralName}}_tooltip_edit_action_text')}}">
                                             <i class="fa-solid fa-pen-to-square"></i>
+                                        </a>
+                                        <a class="me-1 text-danger delete{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
+                                            title="{{__('messages.{{snakeCasePluralName}}_list_delete_btn_tooltip_text')}}" data-bs-toggle="tooltip" id="delete{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
+                                            <i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -181,6 +204,88 @@
                     <input type="hidden" name="deactivate_id" id="deactivate_id" value="" />
                     @csrf
                 </form>
+                <form action="{{route('{{camelCasePluralName}}.delete')}}" id="delete_form" name="delete_form" method="POST">
+                    <input type="hidden" name="delete_id" id="delete_id" value="" />
+                    @csrf
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="activateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="activateConfirmModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content border-0">
+            <div class="modal-header text-white bg-danger border-0 py-2 justify-content-center">
+                <h5 class="modal-title font-italic" id="activateConfirmModalTitle">
+                    {{ __('messages.{{snakeCasePluralName}}_list_activate_confirm_modal_title') }}
+                </h5>
+            </div>
+            <div class="modal-footer border-0 p-0 justify-content-center">
+                <div class="row w-100 g-1">
+                    <div class="col-10">
+                        <a class="btn btn-app_dblue border-0 w-100" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;" id="activate_confirm_modal_submit_btn">
+                            {{ __('messages.{{snakeCasePluralName}}_list_activate_confirm_modal_cnf_btn_text') }}
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deactivateConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deactivateConfirmModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content border-0">
+            <div class="modal-header text-white bg-danger border-0 py-2 justify-content-center">
+                <h5 class="modal-title font-italic" id="deactivateConfirmModalTitle">
+                    {{ __('messages.{{snakeCasePluralName}}_list_deactivate_confirm_modal_title') }}
+                </h5>
+            </div>
+            <div class="modal-footer border-0 p-0 justify-content-center">
+                <div class="row w-100 g-1">
+                    <div class="col-10">
+                        <a class="btn btn-app_dblue border-0 w-100" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;" id="deactivate_confirm_modal_submit_btn">
+                            {{ __('messages.{{snakeCasePluralName}}_list_deactivate_confirm_modal_cnf_btn_text') }}
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="deleteConfirmModal" tabindex="-1" role="dialog" aria-labelledby="deleteConfirmModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content border-0">
+            <div class="modal-header text-white bg-danger border-0 py-2 justify-content-center">
+                <h5 class="modal-title font-italic" id="deleteConfirmModalTitle">
+                    {{ __('messages.{{snakeCasePluralName}}_list_delete_confirm_modal_title') }}
+                </h5>
+            </div>
+            <div class="modal-footer border-0 p-0 justify-content-center">
+                <div class="row w-100 g-1">
+                    <div class="col-10">
+                        <a class="btn btn-app_dblue border-0 w-100" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;" id="delete_confirm_modal_submit_btn">
+                            {{ __('messages.{{snakeCasePluralName}}_list_delete_confirm_modal_cnf_btn_text') }}
+                        </a>
+                    </div>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-danger border-0 w-100" data-bs-dismiss="modal">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

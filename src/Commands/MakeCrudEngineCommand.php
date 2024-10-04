@@ -198,11 +198,18 @@ class MakeCrudEngineCommand extends Command
             $this->snakeCasePluralName.'_filter_keyword_text' => 'Search by keyword',
             $this->snakeCasePluralName.'_column_name_text'    => 'Name',
             $this->snakeCasePluralName.'_column_actions_text' => 'Actions',
-            $this->snakeCasePluralName.'_deactivate_tooltip_'.$this->snakeCaseSingularName.'_text' => 'Are you sure to deactivate this '.$this->singularName.'?',
-            $this->snakeCasePluralName.'_tooltip_confirmation_deactivate_btn_text'                 => 'Yes, Deactivate it!',
-            $this->snakeCasePluralName.'_activate_tooltip_'.$this->snakeCaseSingularName.'_text'   => 'Are you sure to activate this '.$this->singularName.'?',
-            $this->snakeCasePluralName.'_tooltip_confirmation_activate_btn_text'                   => 'Yes, Activate it!',
-            $this->snakeCasePluralName.'_tooltip_edit_action_text' => 'Click here adapt this '.$this->singularName.'',
+
+            $this->snakeCasePluralName.'_list_deactivate_tooltip_text' => 'Click here to deactivate this '.$this->singularName.'.',
+            $this->snakeCasePluralName.'_list_activate_tooltip_text'   => 'Click here to active this '.$this->singularName.'.',
+            $this->snakeCasePluralName.'_list_delete_btn_tooltip_text' => 'Click here to delete this '.$this->singularName.'.',
+            $this->snakeCasePluralName.'_tooltip_edit_action_text'     => 'Click here adapt this '.$this->singularName.'.',
+
+            $this->snakeCasePluralName.'_list_activate_confirm_modal_title'          => 'Are you sure to activate this '.$this->singularName.'?',
+            $this->snakeCasePluralName.'_list_activate_confirm_modal_cnf_btn_text'   => 'Yes, Activate it!',
+            $this->snakeCasePluralName.'_list_deactivate_confirm_modal_title'        => 'Are you sure to deactivate this '.$this->singularName.'?',
+            $this->snakeCasePluralName.'_list_deactivate_confirm_modal_cnf_btn_text' => 'Yes, Deactivate it!',
+            $this->snakeCasePluralName.'_list_delete_confirm_modal_title'            => 'Are you sure to delete this '.$this->singularName.'?',
+            $this->snakeCasePluralName.'_list_delete_confirm_modal_cnf_btn_text'     => 'Yes, Delete it!',
             /**
              * '.$this->snakeCaseSingularName.' : Activate/ Deactivate
              */
@@ -210,6 +217,8 @@ class MakeCrudEngineCommand extends Command
             'enable_'.$this->snakeCaseSingularName.'_success_msg'  => 'The requested '.$this->singularName.' has been enabled.',
             'disable_'.$this->snakeCaseSingularName.'_error_msg'   => 'An error occurred while disabling the requested '.$this->singularName.'.',
             'disable_'.$this->snakeCaseSingularName.'_success_msg' => 'The requested '.$this->singularName.' has been disabled.',
+            'delete_'.$this->snakeCaseSingularName.'_error_msg'   => 'An error occurred while deleting the requested '.$this->singularName.'.',
+            'delete_'.$this->snakeCaseSingularName.'_success_msg' => 'The requested '.$this->singularName.' has been deleted.',
             /**
              * '.$this->snakeCaseSingularName.' : Create Page
              */
