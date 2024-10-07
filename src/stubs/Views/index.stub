@@ -85,7 +85,7 @@
                                             <input type="checkbox" class="form-check-input" id="{{camelCasePluralName}}IndexFilterStatus{{ $each{{camelCaseSingularName}}Status }}" name="{{camelCasePluralName}}IndexFilterStatus[]" value="{{ $each{{camelCaseSingularName}}Status }}"
                                                 @checked(in_array($each{{camelCaseSingularName}}Status, ${{camelCasePluralName}}IndexFilterStatus)) >
                                             <label class="form-check-label" for="{{camelCasePluralName}}IndexFilterStatus{{ $each{{camelCaseSingularName}}Status }}">
-                                                <small class="fw-bold">{{__('messages.{{snakeCaseSingularName}}_form_field_status_option'.$each{{camelCaseSingularName}}Status.'_text')}}</small>
+                                                <small class="fw-bold">{{__('messages.general_record_status'.$each{{camelCaseSingularName}}Status.'_text')}}</small>
                                             </label>
                                         </div>
                                     @endforeach
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3 px-1">
                                 <div class="w-100 my-1">
-                                    <input class="form-control" type="text" name="{{camelCasePluralName}}IndexFilterKeyword" id="{{camelCasePluralName}}IndexFilterKeyword" value="{{ ${{camelCasePluralName}}IndexFilterKeyword }}" placeholder="{{ __('messages.{{snakeCasePluralName}}_filter_keyword_text') }}">
+                                    <input class="form-control" type="text" name="{{camelCasePluralName}}IndexFilterKeyword" id="{{camelCasePluralName}}IndexFilterKeyword" value="{{ ${{camelCasePluralName}}IndexFilterKeyword }}" placeholder="{{ __('messages.{{snakeCasePluralName}}_list_filter_keyword_text') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-3 px-1">
@@ -124,7 +124,7 @@
                             <div class="row align-items-md-center">
                                 <div class="col-md-4 col-lg-4 col-xl-4 text-start">
                                     <small class="fw-bold fst-italic">
-                                        {{ __('messages.{{snakeCasePluralName}}_column_name_text') }}
+                                        {{ __('messages.{{snakeCasePluralName}}_list_column_name_text') }}
                                     </small>
                                 </div>
                                 <div class="col-md-4 col-lg-4 col-xl-4 text-start">
@@ -135,7 +135,7 @@
                                 </div>
                                 <div class="col-md-2 col-lg-2 col-xl-2 text-end">
                                     <small class="fw-bold fst-italic">
-                                        {{ __('messages.{{snakeCasePluralName}}_column_actions_text') }}
+                                        {{ __('messages.{{snakeCasePluralName}}_list_column_actions_text') }}
                                     </small>
                                 </div>
                             </div>
@@ -152,21 +152,21 @@
                                     <div class="col-6 col-md-2 col-lg-2 col-xl-2 text-end">
                                         @if ($each{{capitalCaseSingularName}}->isStatusActive())
                                             <a class="me-1 text-app_dblue deactivate{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                title="{{__('messages.{{snakeCasePluralName}}_list_deactivate_tooltip_text')}}" data-bs-toggle="tooltip" id="deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
+                                                title="{{__('messages.{{snakeCasePluralName}}_list_action_deactivate_tooltip_text')}}" data-bs-toggle="tooltip" id="deactivate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
                                                 <i class="fa-solid fa-circle-check"></i>
                                             </a>
                                         @else
                                             <a class="me-1 text-danger activate{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                                title="{{__('messages.{{snakeCasePluralName}}_list_activate_tooltip_text')}}" data-bs-toggle="tooltip" id="activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
+                                                title="{{__('messages.{{snakeCasePluralName}}_list_action_activate_tooltip_text')}}" data-bs-toggle="tooltip" id="activate{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
                                                 <i class="fa-solid fa-circle-xmark"></i>
                                             </a>
                                         @endif
                                         <a class="me-1 text-app_dblue" target="_blank" href="{{ route('{{camelCasePluralName}}.edit', ['id' => $each{{capitalCaseSingularName}}->id]) }}" style="text-decoration: none;"
-                                            data-bs-toggle="tooltip"  title="{{__('messages.{{snakeCasePluralName}}_tooltip_edit_action_text')}}">
+                                            data-bs-toggle="tooltip"  title="{{__('messages.{{snakeCasePluralName}}_list_action_edit_btn_tooltip_text')}}">
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         <a class="me-1 text-danger delete{{capitalCaseSingularName}}" href="JavaScript:void(0);" tabindex="0" style="text-decoration: none;"
-                                            title="{{__('messages.{{snakeCasePluralName}}_list_delete_btn_tooltip_text')}}" data-bs-toggle="tooltip" id="delete{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
+                                            title="{{__('messages.{{snakeCasePluralName}}_list_action_delete_btn_tooltip_text')}}" data-bs-toggle="tooltip" id="delete{{capitalCaseSingularName}}{{$each{{capitalCaseSingularName}}->id}}" >
                                             <i class="fa-solid fa-trash-can"></i>
                                         </a>
                                     </div>
@@ -221,6 +221,11 @@
                     {{ __('messages.{{snakeCasePluralName}}_list_activate_confirm_modal_title') }}
                 </h5>
             </div>
+            <div class="modal-body">
+                <div class="w-100 fw-bold">
+                    {{ __('messages.{{snakeCasePluralName}}_list_activate_confirm_modal_body_text') }}
+                </div>
+            </div>
             <div class="modal-footer border-0 p-0 justify-content-center">
                 <div class="row w-100 g-1">
                     <div class="col-10">
@@ -247,6 +252,11 @@
                     {{ __('messages.{{snakeCasePluralName}}_list_deactivate_confirm_modal_title') }}
                 </h5>
             </div>
+            <div class="modal-body">
+                <div class="w-100 fw-bold">
+                    {{ __('messages.{{snakeCasePluralName}}_list_deactivate_confirm_modal_body_text') }}
+                </div>
+            </div>
             <div class="modal-footer border-0 p-0 justify-content-center">
                 <div class="row w-100 g-1">
                     <div class="col-10">
@@ -272,6 +282,11 @@
                 <h5 class="modal-title font-italic" id="deleteConfirmModalTitle">
                     {{ __('messages.{{snakeCasePluralName}}_list_delete_confirm_modal_title') }}
                 </h5>
+            </div>
+            <div class="modal-body">
+                <div class="w-100 fw-bold">
+                    {{ __('messages.{{snakeCasePluralName}}_list_delete_confirm_modal_body_text') }}
+                </div>
             </div>
             <div class="modal-footer border-0 p-0 justify-content-center">
                 <div class="row w-100 g-1">
