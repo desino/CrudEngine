@@ -48,7 +48,7 @@
         jQuery(document).on('click', '#{{snakeCasePluralName}}_index_clear', function(event) {
             event.preventDefault();
             jQuery('#loading_screen').show();
-            jQuery('input[name="{{camelCasePluralName}}IndexFilterStatus[]"], #{{camelCasePluralName}}IndexFilterKeyword').val('');
+            jQuery('input[name="{{snakeCasePluralName}}_filter_status[]"], #{{snakeCasePluralName}}filter_keyword').val('');
             jQuery("#{{snakeCasePluralName}}_index_submit").trigger('click');
         });
     });
@@ -82,9 +82,9 @@
                                 <div class="w-100 my-1">
                                     @foreach (${{camelCaseSingularName}}Statuses as $each{{camelCaseSingularName}}Status)
                                         <div class="form-check form-check-inline">
-                                            <input type="checkbox" class="form-check-input" id="{{camelCasePluralName}}IndexFilterStatus{{ $each{{camelCaseSingularName}}Status }}" name="{{camelCasePluralName}}IndexFilterStatus[]" value="{{ $each{{camelCaseSingularName}}Status }}"
-                                                @checked(in_array($each{{camelCaseSingularName}}Status, ${{camelCasePluralName}}IndexFilterStatus)) >
-                                            <label class="form-check-label" for="{{camelCasePluralName}}IndexFilterStatus{{ $each{{camelCaseSingularName}}Status }}">
+                                            <input type="checkbox" class="form-check-input" id="{{snakeCasePluralName}}_filter_status{{ $each{{camelCaseSingularName}}Status }}" name="{{snakeCasePluralName}}_filter_status[]" value="{{ $each{{camelCaseSingularName}}Status }}"
+                                                @checked(in_array($each{{camelCaseSingularName}}Status, ${{camelCasePluralName}}FilterStatus)) >
+                                            <label class="form-check-label" for="{{snakeCasePluralName}}_filter_status{{ $each{{camelCaseSingularName}}Status }}">
                                                 <small class="fw-bold">{{__('messages.general_record_status'.$each{{camelCaseSingularName}}Status.'_text')}}</small>
                                             </label>
                                         </div>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="col-12 col-md-6 col-lg-3 px-1">
                                 <div class="w-100 my-1">
-                                    <input class="form-control" type="text" name="{{camelCasePluralName}}IndexFilterKeyword" id="{{camelCasePluralName}}IndexFilterKeyword" value="{{ ${{camelCasePluralName}}IndexFilterKeyword }}" placeholder="{{ __('messages.{{snakeCasePluralName}}_list_filter_keyword_text') }}">
+                                    <input class="form-control" type="text" name="{{snakeCasePluralName}}filter_keyword" id="{{snakeCasePluralName}}filter_keyword" value="{{ ${{camelCasePluralName}}FilterKeyword }}" placeholder="{{ __('messages.{{snakeCasePluralName}}_list_filter_keyword_text') }}">
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 col-lg-3 px-1">

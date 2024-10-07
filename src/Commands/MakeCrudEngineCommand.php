@@ -203,13 +203,13 @@ class MakeCrudEngineCommand extends Command
             $this->snakeCasePluralName.'_list_action_edit_btn_tooltip_text'   => 'Click here to adapt this '.$this->singularName.'.',
             $this->snakeCasePluralName.'_list_activate_confirm_modal_title'          => $this->singularName.' Activation',
             $this->snakeCasePluralName.'_list_activate_confirm_modal_body_text'      => 'Are you sure to activate this '.$this->singularName.'?',
-            $this->snakeCasePluralName.'_list_activate_confirm_modal_cnf_btn_text'   => 'Yes, Activate it!',
+            $this->snakeCasePluralName.'_list_activate_confirm_modal_cnf_btn_text'   => 'Yes, Activate',
             $this->snakeCasePluralName.'_list_deactivate_confirm_modal_title'        => $this->singularName.' Deactivation',
             $this->snakeCasePluralName.'_list_deactivate_confirm_modal_body_text'    => 'Are you sure to deactivate this '.$this->singularName.'?',
-            $this->snakeCasePluralName.'_list_deactivate_confirm_modal_cnf_btn_text' => 'Yes, Deactivate it!',
+            $this->snakeCasePluralName.'_list_deactivate_confirm_modal_cnf_btn_text' => 'Yes, Deactivate',
             $this->snakeCasePluralName.'_list_delete_confirm_modal_title'            => $this->singularName.' Deletion',
             $this->snakeCasePluralName.'_list_delete_confirm_modal_body_text'        => 'Are you sure to delete this '.$this->singularName.'?',
-            $this->snakeCasePluralName.'_list_delete_confirm_modal_cnf_btn_text'     => 'Yes, Delete it!',
+            $this->snakeCasePluralName.'_list_delete_confirm_modal_cnf_btn_text'     => 'Yes, Delete',
             /**
              * '.$this->snakeCaseSingularName.' : Activate/ Deactivate
              */

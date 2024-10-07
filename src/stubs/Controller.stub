@@ -45,24 +45,24 @@ class {{capitalCaseSingularName}}Controller extends Controller
         ${{camelCaseSingularName}}Statuses = {{capitalCaseSingularName}}::getStatuses();
 
         if ($request->isMethod('POST')) {
-            ${{camelCasePluralName}}IndexFilterStatus           = $request->post('{{camelCasePluralName}}IndexFilterStatus', [${{camelCaseSingularName}}Statuses[0]]);
-            $validated_{{camelCasePluralName}}IndexFilterStatus = count(${{camelCasePluralName}}IndexFilterStatus) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatus : [${{camelCaseSingularName}}Statuses[0]];
-            $request->session()->put('{{camelCasePluralName}}IndexFilterStatus', $validated_{{camelCasePluralName}}IndexFilterStatus);
+            ${{camelCasePluralName}}FilterStatus           = $request->post('{{snakeCasePluralName}}_filter_status', [${{camelCaseSingularName}}Statuses[0]]);
+            $validated_{{camelCasePluralName}}FilterStatus = count(${{camelCasePluralName}}FilterStatus) == count(array_intersect(${{camelCasePluralName}}FilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}FilterStatus : [${{camelCaseSingularName}}Statuses[0]];
+            $request->session()->put('{{snakeCasePluralName}}_filter_status', $validated_{{camelCasePluralName}}FilterStatus);
 
-            ${{camelCasePluralName}}IndexFilterKeyword = $request->post('{{camelCasePluralName}}IndexFilterKeyword', '');
-            $request->session()->put('{{camelCasePluralName}}IndexFilterKeyword', ${{camelCasePluralName}}IndexFilterKeyword);
+            ${{camelCasePluralName}}FilterKeyword = $request->post('{{snakeCasePluralName}}filter_keyword', '');
+            $request->session()->put('{{snakeCasePluralName}}filter_keyword', ${{camelCasePluralName}}FilterKeyword);
         }
 
-        ${{camelCasePluralName}}IndexFilterStatus = $request->session()->get('{{camelCasePluralName}}IndexFilterStatus', [${{camelCaseSingularName}}Statuses[0]]);
-        ${{camelCasePluralName}}IndexFilterStatus = count(${{camelCasePluralName}}IndexFilterStatus) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatus : [${{camelCaseSingularName}}Statuses[0]];
+        ${{camelCasePluralName}}FilterStatus = $request->session()->get('{{snakeCasePluralName}}filter_keyword', [${{camelCaseSingularName}}Statuses[0]]);
+        ${{camelCasePluralName}}FilterStatus = count(${{camelCasePluralName}}FilterStatus) == count(array_intersect(${{camelCasePluralName}}FilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}FilterStatus : [${{camelCaseSingularName}}Statuses[0]];
 
-        ${{camelCasePluralName}}IndexFilterKeyword = $request->session()->get('{{camelCasePluralName}}IndexFilterKeyword', '');
+        ${{camelCasePluralName}}FilterKeyword = $request->session()->get('{{snakeCasePluralName}}filter_keyword', '');
 
         ${{camelCasePluralName}} = {{capitalCaseSingularName}}::orderByRaw('CAST(name as UNSIGNED) ASC')
             ->orderBy('name', 'ASC')
-            ->status(${{camelCasePluralName}}IndexFilterStatus)
-            ->when(strlen(${{camelCasePluralName}}IndexFilterKeyword) > 0, function ($q) use (${{camelCasePluralName}}IndexFilterKeyword) {
-                $q->where('name','LIKE', '%'.${{camelCasePluralName}}IndexFilterKeyword.'%');
+            ->status(${{camelCasePluralName}}FilterStatus)
+            ->when(strlen(${{camelCasePluralName}}FilterKeyword) > 0, function ($q) use (${{camelCasePluralName}}FilterKeyword) {
+                $q->where('name','LIKE', '%'.${{camelCasePluralName}}FilterKeyword.'%');
             })
             ->paginate(20);
             //->paginate($config['items_per_page_{{snakeCasePluralName}}']);
@@ -73,8 +73,8 @@ class {{capitalCaseSingularName}}Controller extends Controller
             'page_title',
             '{{camelCasePluralName}}',
             '{{camelCaseSingularName}}Statuses',
-            '{{camelCasePluralName}}IndexFilterStatus',
-            '{{camelCasePluralName}}IndexFilterKeyword',
+            '{{camelCasePluralName}}FilterStatus',
+            '{{camelCasePluralName}}FilterKeyword',
         ));
     }
 
