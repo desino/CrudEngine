@@ -20,6 +20,11 @@ class {{capitalCaseSingularName}} extends Model
     public $timestamps = false;
 
     /**
+     * @var string
+     */
+    protected $table = '{{snakeCasePluralName}}';
+
+    /**
      * The attributes that aren't mass assignable.
      *
      * @var array
@@ -54,7 +59,7 @@ class {{capitalCaseSingularName}} extends Model
     }
 
      /**
-     * Returns true if the {{capitalCaseSingularName}} is active, false otherwise
+     * Returns true if the {{headlineSingularName}} is active, false otherwise
      *
      * @return bool
      */
@@ -64,7 +69,7 @@ class {{capitalCaseSingularName}} extends Model
     }
 
     /**
-     * Returns true if the {{capitalCaseSingularName}} is archived, false otherwise
+     * Returns true if the {{headlineSingularName}} is archived, false otherwise
      *
      * @return bool
      */
@@ -74,22 +79,19 @@ class {{capitalCaseSingularName}} extends Model
     }
 
      /**
-     * Returns the value for {{capitalCaseSingularName}} status Active status
+     * Returns the value for {{headlineSingularName}} status Active
      *
      * @return string
      */
-    public static function getStatusActive() : string
+    public static function getStatusActive(): int
     {
         return self::STATUS_ACTIVE;
     }
-    
+
     /**
-     * Returns the value for {{capitalCaseSingularName}} status Archived status
-     *
-     *
-     * @return string
+     * Returns the value for {{headlineSingularName}} status inactive.
      */
-    public static function getStatusInactive() : string
+    public static function getStatusInactive(): int
     {
         return self::STATUS_INACTIVE;
     }

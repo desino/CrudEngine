@@ -27,16 +27,16 @@ class {{capitalCaseSingularName}}Controller extends Controller
     }
 
     /**
-     * Handles the index action for the {{lowerCasePluralName}}.
+     * Handles the index action for the {{headlinePluralName}}.
      *
      * Checks for basic authentication, retrieves and validates filter statuses and keywords,
-     * and paginates the {{camelCasePluralName}} data based on the filter criteria.
+     * and paginates the {{headlinePluralName}} data based on the filter criteria.
      *
      * @return \Illuminate\View\View
      */
     public function index(Request $request)
     {
-        if (!$this->loggedUser) {
+        if (! $this->loggedUser) {
             AppMiscService::addRedirectMsg(__('messages.general_not_allowed_access_message_text'));
             return redirect()->route('home');
         }
@@ -45,27 +45,27 @@ class {{capitalCaseSingularName}}Controller extends Controller
         ${{camelCaseSingularName}}Statuses = {{capitalCaseSingularName}}::getStatuses();
 
         if ($request->isMethod('POST')) {
-            ${{camelCasePluralName}}FilterStatus           = $request->post('{{snakeCasePluralName}}_filter_status', [${{camelCaseSingularName}}Statuses[0]]);
-            $validated_{{camelCasePluralName}}FilterStatus = count(${{camelCasePluralName}}FilterStatus) == count(array_intersect(${{camelCasePluralName}}FilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}FilterStatus : [${{camelCaseSingularName}}Statuses[0]];
-            $request->session()->put('{{snakeCasePluralName}}_filter_status', $validated_{{camelCasePluralName}}FilterStatus);
+            ${{camelCasePluralName}}IndexFilterStatuses           = $request->post('{{snakeCasePluralName}}_index_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
+            $validated{{camelCasePluralName}}IndexFilterStatuses = count(${{camelCasePluralName}}IndexFilterStatuses) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatuses, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatuses : [${{camelCaseSingularName}}Statuses[0]];
+            $request->session()->put('{{snakeCasePluralName}}_index_filter_status', $validated{{camelCasePluralName}}IndexFilterStatuses);
 
-            ${{camelCasePluralName}}FilterKeyword = $request->post('{{snakeCasePluralName}}filter_keyword', '');
-            $request->session()->put('{{snakeCasePluralName}}filter_keyword', ${{camelCasePluralName}}FilterKeyword);
+            ${{camelCasePluralName}}IndexFilterKeyword = $request->post('{{snakeCasePluralName}}_index_filter_keyword', '');
+            $request->session()->put('{{snakeCasePluralName}}_index_filter_keyword', ${{camelCasePluralName}}IndexFilterKeyword);
         }
 
-        ${{camelCasePluralName}}FilterStatus = $request->session()->get('{{snakeCasePluralName}}filter_keyword', [${{camelCaseSingularName}}Statuses[0]]);
-        ${{camelCasePluralName}}FilterStatus = count(${{camelCasePluralName}}FilterStatus) == count(array_intersect(${{camelCasePluralName}}FilterStatus, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}FilterStatus : [${{camelCaseSingularName}}Statuses[0]];
+        ${{camelCasePluralName}}IndexFilterStatuses = $request->session()->get('{{snakeCasePluralName}}_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
+        ${{camelCasePluralName}}IndexFilterStatuses = count(${{camelCasePluralName}}IndexFilterStatuses) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatuses, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatuses : [${{camelCaseSingularName}}Statuses[0]];
 
-        ${{camelCasePluralName}}FilterKeyword = $request->session()->get('{{snakeCasePluralName}}filter_keyword', '');
+        ${{camelCasePluralName}}IndexFilterKeyword = $request->session()->get('{{snakeCasePluralName}}_index_filter_keyword', '');
 
         ${{camelCasePluralName}} = {{capitalCaseSingularName}}::orderByRaw('CAST(name as UNSIGNED) ASC')
             ->orderBy('name', 'ASC')
-            ->status(${{camelCasePluralName}}FilterStatus)
-            ->when(strlen(${{camelCasePluralName}}FilterKeyword) > 0, function ($q) use (${{camelCasePluralName}}FilterKeyword) {
-                $q->where('name','LIKE', '%'.${{camelCasePluralName}}FilterKeyword.'%');
+            ->status(${{camelCasePluralName}}IndexFilterStatuses)
+            ->when(strlen(${{camelCasePluralName}}IndexFilterKeyword) > 0, function ($q) use (${{camelCasePluralName}}IndexFilterKeyword) {
+                $q->where('name','LIKE', '%'.${{camelCasePluralName}}IndexFilterKeyword.'%');
             })
             ->paginate(20);
-            //->paginate($config['items_per_page_{{snakeCasePluralName}}']);
+            //->paginate((int) $config['items_per_page_{{snakeCasePluralName}}']);
 
         $page_title = __('messages.{{snakeCasePluralName}}_list_page_title');
 
@@ -73,27 +73,26 @@ class {{capitalCaseSingularName}}Controller extends Controller
             'page_title',
             '{{camelCasePluralName}}',
             '{{camelCaseSingularName}}Statuses',
-            '{{camelCasePluralName}}FilterStatus',
-            '{{camelCasePluralName}}FilterKeyword',
+            '{{camelCasePluralName}}IndexFilterStatuses',
+            '{{camelCasePluralName}}IndexFilterKeyword',
         ));
     }
 
     /**
-     * Handles the request to create & process the post request to create the {{lowerCasePluralName}}.
+     * Handles the request to create & process the post request to create the {{headlineSingularName}}.
      *
      * @throws \Exception if creation fails
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
     {
-        if (!$this->loggedUser) {
+        if (! $this->loggedUser) {
             AppMiscService::addRedirectMsg(__('messages.general_not_allowed_access_message_text'));
             return redirect()->route('home');
         }
 
         if ($request->isMethod('POST')) {
-            //$validationsMsgs = AppMiscService::defaultValidationMsgs();
-            $validationsMsgs = [];
+            $validationsMsgs = AppMiscService::defaultValidationMsgs();
             $validationsMsgs['name.unique'] = __('messages.{{snakeCasePluralName}}_general_error_name_is_not_unique');
 
             $validations = [
@@ -109,10 +108,10 @@ class {{capitalCaseSingularName}}Controller extends Controller
 
             DB::beginTransaction();
             try {
-                ${{camelCaseSingularName}} = {{capitalCaseSingularName}}::create([
+                {{capitalCaseSingularName}}::create([
                     'name'       => $request->post('name'),
                     'status'     => {{capitalCaseSingularName}}::getStatusActive(),
-                    'created_at' => now()->toDateTimeString(),
+                    'created_at' => now(),
                     'created_by' => $this->loggedUser->id,
                 ]);
 
@@ -138,11 +137,12 @@ class {{capitalCaseSingularName}}Controller extends Controller
     }
 
     /**
-     * Handles request to edit the record & also process the posted edit from for the {{capitalCaseSingularName}}.
+     * Handles request to edit the record & also process the posted edit from for the {{headlineSingularName}}.
      *
-     * @param int $id The ID of the {{capitalCaseSingularName}} to be edited
+     * @param int $id The ID of the {{headlineSingularName}} to be edited
      * @param Request $request The HTTP request object
      * @throws \Exception If an error occurs during the update process
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id, Request $request)
@@ -154,7 +154,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
         }
 
         ${{camelCaseSingularName}} = {{capitalCaseSingularName}}::find($id);
-        if (!${{camelCaseSingularName}}) {
+        if (! ${{camelCaseSingularName}}) {
             AppMiscService::addRedirectMsg(__('messages.general_error_{{snakeCaseSingularName}}_not_found'));
 
             return redirect()->route('{{camelCasePluralName}}.index');
@@ -165,7 +165,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
             $validationsMsgs['name.unique'] = __('messages.{{snakeCasePluralName}}_general_error_name_is_not_unique');
 
             $validations = [
-                'name' => ['required', 'unique:{{camelCasePluralName}},name,'.${{camelCaseSingularName}}->id, 'max:55'],
+                'name' => ['required', 'unique:{{snakeCasePluralName}},name,'.${{camelCaseSingularName}}->id, 'max:55'],
             ];
 
             $validator = Validator::make($request->all(), $validations, $validationsMsgs);
@@ -179,7 +179,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
             try {
                 ${{camelCaseSingularName}}->update([
                     'name'       => $request->post('name'),
-                    'updated_at' => now()->toDateTimeString(),
+                    'updated_at' => now(),
                     'updated_by' => $this->loggedUser->id,
                 ]);
 
@@ -197,7 +197,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
             return redirect()->route('{{camelCasePluralName}}.index');
         }
 
-        $page_title = __('messages.edit_{{snakeCaseSingularName}}_page_title', ['{{upperCaseSingularName}}_NAME' => ${{camelCaseSingularName}}->name]);
+        $page_title = __('messages.edit_{{snakeCaseSingularName}}_page_title', ['{{capitalHeadlineSingularName}}_NAME' => ${{camelCaseSingularName}}->name]);
 
         return view('{{snakeCasePluralName}}.edit', compact(
             'page_title',
@@ -206,10 +206,11 @@ class {{capitalCaseSingularName}}Controller extends Controller
     }
 
     /**
-     * Activates the {{camelCaseSingularName}}.
+     * Activates the {{headlineSingularName}}.
      *
      * @param Request $request The HTTP request object.
      * @throws \Exception if an error occurs during the activation process
+     *
      * @return \Illuminate\Http\Response The HTTP response.
      */
     public function activate(Request $request)
@@ -222,7 +223,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
 
         $activate_id = (int) $request->post('activate_id', 0);
         ${{camelCaseSingularName}} = {{capitalCaseSingularName}}::find($activate_id);
-        if (!${{camelCaseSingularName}}) {
+        if (! ${{camelCaseSingularName}}) {
             AppMiscService::addRedirectMsg(__('messages.general_error_{{snakeCaseSingularName}}_not_found'));
 
             return redirect()->route('{{camelCasePluralName}}.index');
@@ -232,7 +233,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
         try {
             ${{camelCaseSingularName}}->update([
                 'status'     => {{capitalCaseSingularName}}::getStatusActive(),
-                'updated_at' => now()->toDateTimeString(),
+                'updated_at' => now(),
                 'updated_by' => $this->loggedUser->id,
             ]);
 
@@ -251,7 +252,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
     }
 
     /**
-     * Deactivates a {{camelCaseSingularName}}.
+     * Deactivates a {{headlineSingularName}}.
      *
      * @param Request $request The HTTP request object.
      * @throws \Exception If an error occurs during the deactivation process.
@@ -277,7 +278,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
         try {
             ${{camelCaseSingularName}}->update([
                 'status'     => {{capitalCaseSingularName}}::getStatusInactive(),
-                'updated_at' => now()->toDateTimeString(),
+                'updated_at' => now(),
                 'updated_by' => $this->loggedUser->id,
             ]);
 
@@ -296,7 +297,7 @@ class {{capitalCaseSingularName}}Controller extends Controller
     }
 
     /**
-     * Deletes a {{camelCaseSingularName}}.
+     * Deletes a {{headlineSingularName}}.
      *
      * @param Request $request The HTTP request object.
      * @throws \Exception If an error occurs during the deletion process.

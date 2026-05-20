@@ -27,7 +27,7 @@
                             <label for="name" class="fw-bold form-label">
                                 {{ __('messages.{{snakeCaseSingularName}}_form_field_name_text') }} <sup><i class="fa-solid fa-asterisk text-danger small fw-bold"></i></sup>
                             </label>
-                            <input type="text" class="form-control @error('name'){{ 'is-invalid' }}@enderror" id="name" name="name" value="{{ ${{camelCaseSingularName}}->name }}" autocomplete="off" />
+                            <input type="text" class="form-control @error('name'){{ 'is-invalid' }}@enderror" id="name" name="name" value="{{ old('name', ${{camelCaseSingularName}}->name) }}" autocomplete="off" />
                             @error('name')
                                 <small class="invalid-feedback fw-bold fst-italic text-danger" role="alert">{{ $message }}</small>
                             @enderror

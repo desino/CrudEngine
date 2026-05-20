@@ -1,7 +1,8 @@
 {
     "name": "desino/crud-engine",
-    "description": "Desino customized in-house simple CURD generator engine",
+    "description": "Desino in-house Laravel CRUD scaffold generator for admin entities",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Desino",
@@ -13,7 +14,6 @@
         "laravel/framework": "^10.0 || ^11.0 || ^12.0 || ^13.0 || ^14.0",
         "laravel/tinker": "*"
     },
-    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Desino\\CrudEngine\\": "src/"
