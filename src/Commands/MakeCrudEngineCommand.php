@@ -105,19 +105,19 @@ class MakeCrudEngineCommand extends Command
     private function getNamesPlaceholders(): array
     {
         return [
+            '{{snakeCaseSingularName}}',
+            '{{camelCaseSingularName}}',
             '{{singularName}}',
             '{{lowerCaseSingularName}}',
             '{{upperCaseSingularName}}',
-            '{{camelCaseSingularName}}',
-            '{{snakeCaseSingularName}}',
             '{{capitalCaseSingularName}}',
             '{{headlineSingularName}}',
             '{{capitalHeadlineSingularName}}',
             '{{pluralName}}',
-            '{{lowerCasePluralName}}',
-            '{{upperCasePluralName}}',
             '{{camelCasePluralName}}',
             '{{snakeCasePluralName}}',
+            '{{lowerCasePluralName}}',
+            '{{upperCasePluralName}}',
             '{{capitalCasePluralName}}',
             '{{headlinePluralName}}',
             '{{capitalHeadlinePluralName}}',
@@ -132,20 +132,22 @@ class MakeCrudEngineCommand extends Command
     private function getNamesPlaceholderValues(): array
     {
         return [
+            $this->snakeCaseSingularName,
+            $this->camelCaseSingularName,
             $this->singularName,
             $this->lowerCaseSingularName,
             $this->upperCaseSingularName,
-            $this->camelCaseSingularName,
-            $this->snakeCaseSingularName,
             $this->capitalCaseSingularName,
             $this->headlineSingularName,
+            $this->capitalHeadlineSingularName,
             $this->pluralName,
-            $this->lowerCasePluralName,
-            $this->upperCasePluralName,
             $this->camelCasePluralName,
             $this->snakeCasePluralName,
+            $this->lowerCasePluralName,
+            $this->upperCasePluralName,
             $this->capitalCasePluralName,
             $this->headlinePluralName,
+            $this->capitalHeadlinePluralName,
         ];
     }
 
