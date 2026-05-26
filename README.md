@@ -102,8 +102,8 @@ For an entity `Category`, the generator appends routes under the URI prefix `/ca
 | Route name | Controller action | Methods |
 |------------|-------------------|---------|
 | `categories.index` | `index` | GET, POST |
-| `categories.create` | `create` | GET, POST |
-| `categories.edit` | `edit` | GET, POST |
+| `categories.create` | `create` | GET, POST (`/categories/create`) |
+| `categories.edit` | `edit` | GET, POST (`/categories/{id}/edit`) |
 | `categories.activate` | `activate` | POST |
 | `categories.deactivate` | `deactivate` | POST |
 | `categories.delete` | `delete` | POST |
@@ -133,6 +133,10 @@ Ensure `composer.json` includes valid `name`, `description`, `license`, and `aut
 - **Issues:** [github.com/desino/CrudEngine/issues](https://github.com/desino/CrudEngine/issues)
 - **Source:** [github.com/desino/CrudEngine](https://github.com/desino/CrudEngine)
 - **Email:** india@desino.be
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
