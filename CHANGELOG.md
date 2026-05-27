@@ -5,6 +5,17 @@ All notable changes to [desino/crud-engine](https://packagist.org/packages/desin
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.3] - 2026-05-27
+
+### Fixed
+
+- **Index filter session keys** — status filters are stored and read using `{entity}_index_filter_statuses` consistently (was writing `_index_filter_status` but reading `_filter_statuses`).
+- **Index filter validation variable** — validated status array variable naming aligned with plural entity convention in generated controllers.
+
+### Changed
+
+- **Index view form controls** — filter form, submit, and clear button IDs/names aligned (`_index_filter_form`, `_index_filter_submit_btn`, `_index_filter_clear_btn`) so clear/search JavaScript targets the correct elements.
+
 ## [1.0.2] - 2026-05-19
 
 ### Added
@@ -40,6 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - PHP `^8.1` and Laravel `^10` / `^11` / `^12` support in `composer.json`.
 - Laravel package auto-discovery for `CrudEngineServiceProvider`.
 
+[1.0.3]: https://github.com/desino/CrudEngine/compare/v1.0.2...v1.0.3
 [1.0.2]: https://github.com/desino/CrudEngine/compare/v1.0.1...v1.0.2
 [1.0.1]: https://github.com/desino/CrudEngine/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/desino/CrudEngine/releases/tag/v1.0.0

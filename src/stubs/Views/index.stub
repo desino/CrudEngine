@@ -45,11 +45,11 @@
             jQuery("form#delete_form").submit();
         });
 
-        jQuery(document).on('click', '#{{snakeCasePluralName}}_index_clear', function(event) {
+        jQuery(document).on('click', '#{{snakeCasePluralName}}_index_filter_clear_btn', function(event) {
             event.preventDefault();
             jQuery('#loading_screen').show();
             jQuery('input[name="{{snakeCasePluralName}}_index_filter_statuses[]"], #{{snakeCasePluralName}}_index_filter_keyword').val('');
-            jQuery("#{{snakeCasePluralName}}_index_submit").trigger('click');
+            jQuery("#{{snakeCasePluralName}}_index_filter_submit_btn").trigger('click');
         });
     });
 </script>
@@ -76,7 +76,7 @@
             </div>
             <div class="card-body border-0 px-0">
                 <div class="clearfix py-4">
-                    <form action="{{route('{{camelCasePluralName}}.index')}}" class="needs-validation" method="POST" novalidate name="{{snakeCasePluralName}}_index_form" id="{{snakeCasePluralName}}_index_form">
+                    <form action="{{route('{{camelCasePluralName}}.index')}}" class="needs-validation" method="POST" novalidate name="{{snakeCasePluralName}}_index_filter_form" id="{{snakeCasePluralName}}_index_filter_form">
                         <div class="row w-100 g-0 align-items-end">
                             <div class="col-12 col-md-12 col-lg-4 px-1">
                                 <div class="w-100 my-1">
@@ -101,14 +101,14 @@
                             </div>
                             <div class="col-6 col-md-6 col-lg-1 px-1">
                                 <div class="w-100 my-1">
-                                    <button type="submit" class="btn btn-app_dblue w-100 border-0" id="{{snakeCasePluralName}}_index_submit" name="{{snakeCasePluralName}}_index_submit">
+                                    <button type="submit" class="btn btn-app_dblue w-100 border-0" id="{{snakeCasePluralName}}_index_filter_submit_btn" name="{{snakeCasePluralName}}_index_filter_submit_btn">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="col-6 col-md-6 col-lg-1 px-1">
                                 <div class="w-100 my-1">
-                                    <button class="btn btn-dark w-100 border-0" id="{{snakeCasePluralName}}_index_clear" name="{{snakeCasePluralName}}_index_clear">
+                                    <button class="btn btn-dark w-100 border-0" id="{{snakeCasePluralName}}_index_filter_clear_btn" name="{{snakeCasePluralName}}_index_filter_clear_btn">
                                         <i class="fas fa-eraser"></i>
                                     </button>
                                 </div>

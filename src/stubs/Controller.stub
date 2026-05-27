@@ -45,15 +45,15 @@ class {{capitalCaseSingularName}}Controller extends Controller
         ${{camelCaseSingularName}}Statuses = {{capitalCaseSingularName}}::getStatuses();
 
         if ($request->isMethod('POST')) {
-            ${{camelCasePluralName}}IndexFilterStatuses           = $request->post('{{snakeCasePluralName}}_index_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
-            $validated{{camelCasePluralName}}IndexFilterStatuses = count(${{camelCasePluralName}}IndexFilterStatuses) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatuses, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatuses : [${{camelCaseSingularName}}Statuses[0]];
-            $request->session()->put('{{snakeCasePluralName}}_index_filter_status', $validated{{camelCasePluralName}}IndexFilterStatuses);
+            ${{camelCasePluralName}}IndexFilterStatuses            = $request->post('{{snakeCasePluralName}}_index_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
+            $validated{{capitalCasePluralName}}IndexFilterStatuses = count(${{camelCasePluralName}}IndexFilterStatuses) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatuses, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatuses : [${{camelCaseSingularName}}Statuses[0]];
+            $request->session()->put('{{snakeCasePluralName}}_index_filter_statuses', $validated{{capitalCasePluralName}}IndexFilterStatuses);
 
             ${{camelCasePluralName}}IndexFilterKeyword = $request->post('{{snakeCasePluralName}}_index_filter_keyword', '');
             $request->session()->put('{{snakeCasePluralName}}_index_filter_keyword', ${{camelCasePluralName}}IndexFilterKeyword);
         }
 
-        ${{camelCasePluralName}}IndexFilterStatuses = $request->session()->get('{{snakeCasePluralName}}_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
+        ${{camelCasePluralName}}IndexFilterStatuses = $request->session()->get('{{snakeCasePluralName}}_index_filter_statuses', [${{camelCaseSingularName}}Statuses[0]]);
         ${{camelCasePluralName}}IndexFilterStatuses = count(${{camelCasePluralName}}IndexFilterStatuses) == count(array_intersect(${{camelCasePluralName}}IndexFilterStatuses, ${{camelCaseSingularName}}Statuses)) ? ${{camelCasePluralName}}IndexFilterStatuses : [${{camelCaseSingularName}}Statuses[0]];
 
         ${{camelCasePluralName}}IndexFilterKeyword = $request->session()->get('{{snakeCasePluralName}}_index_filter_keyword', '');
